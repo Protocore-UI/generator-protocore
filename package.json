@@ -6,10 +6,10 @@
     "yeoman-generator"
   ],
   "dependencies": {
+    "chalk": "^1.0.0",
     "yeoman-generator": "^0.19.2"
   },
-  "files": [
-  ],
+  "files": [],
   "homepage": "https://github.com/hegdeashwin/generator-protocore",
   "repository": {
     "type": "git",
