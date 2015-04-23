@@ -1,3 +1,5 @@
+'use strict';
+
 var generators = require('yeoman-generator');
 
 module.exports = generators.Base.extend({
@@ -7,41 +9,52 @@ module.exports = generators.Base.extend({
 
 		this.program = require('../../package.json');
 
+		this.option('appPath', {
+			desc: 'Name of application directory',
+			type: 'String',
+			defaults: 'myapp',
+			optional: true
+		});
+		this.appPath = this.options.appPath;
+
 		this.option('smacss', {
 			desc: 'Use SMACSS',
 			type: Boolean,
 			defaults: false
 		});
 		this.smacss = this.options.smacss;
+
+		this.option('pre', {
+			desc: 'Use Preprocessor',
+			type: String,
+			defaults: 'css'
+		});
+		this.pre = this.options.pre;
 	},
 
 	ui: function() {
+		this.log("AppPath: ", this.appPath);
+		this.log("Smacss: ", this.smacss);
+		this.log("Pre: ", this.pre);
+
 		var prompts = [{
-			type: "list",
-			name: "approach",
-			message: "Do you want scaffolding to include SMACSS approach ? (Default: Yes)",
-			choices: [
-				"Skip this question. Keep the default.",
-				"No"
-			],
-			filter: function(val) {
-				if (val.toLowerCase().indexOf("skip") > -1) {
-					return true;
-				}
-				return false;
-			}
-		}, {
 			type: "list",
 			name: "preprocessor",
 			message: "Do you want scaffolding to include CSS preprocessor ? (Default: CSS)",
 			choices: [
 				"LESS - Configures LESS.",
+				"SASS - Configures SASS.",
+				"Stylus - Configures Stylus.",
 				"Skip this question. Keep the default."
 			],
 			filter: function(val) {
 				var val = val.toLowerCase();
 				if (val.indexOf("less") > -1) {
 					return 'less';
+				} else if (val.indexOf("sass") > -1) {
+					return 'sass';
+				} else if (val.indexOf("stylus") > -1) {
+					return 'stylus';
 				} else {
 					return false;
 				}
@@ -49,20 +62,50 @@ module.exports = generators.Base.extend({
 		}];
 
 		this.prompt(prompts, function(answers) {
-			console.log(answers);
+			this.log(answers);
 		}.bind(this));
 	},
 
 	app: function() {
-		this.mkdir('config');
-		this.mkdir('config/build');
-		this.mkdir('config/lints');
-		this.mkdir('src');
-		this.mkdir('src/apps');
-		this.mkdir('src/assets');
-		this.mkdir('src/stylesheets');
-		this.mkdir('src/systems');
-		this.mkdir('src/templates');
-		this.mkdir('tests');
-	}
+		this.fs.copyTpl(
+			this.templatePath('_readme.md'),
+			this.destinationPath(this.appPath + '/README.md'), {
+				projectName: this.appPath
+			}
+		);
+
+		this.fs.copyTpl(
+			this.templatePath('_editorconfig'),
+			this.destinationPath(this.appPath + '/.editorconfig')
+		);
+
+		this.fs.copyTpl(
+			this.templatePath('_package.json'),
+			this.destinationPath(this.appPath + '/package.json'), {
+				projectName: this.appPath
+			}
+		);
+
+		this.fs.copyTpl(
+			this.templatePath('_index.html'),
+			this.destinationPath(this.appPath + '/src/index.html'), {
+				projectName: this.appPath
+			}
+		);
+	},
+
+	// writing: function() {
+	// 	this.fs.copyTpl(
+	// 		this.templatePath('index.html'),
+	// 		this.destinationPath('src/index.html'), {
+	// 			title: 'Templating with Yeoman'
+	// 		}
+	// 	);
+	// },
+
+	// install: function() {
+	// 	this.on('end', function() {
+	// 		this.log("Installation completed!");
+	// 	});
+	// }
 });
