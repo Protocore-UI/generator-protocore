@@ -17,54 +17,50 @@ module.exports = generators.Base.extend({
 		});
 		this.appPath = this.options.appPath;
 
-		this.option('smacss', {
-			desc: 'Use SMACSS',
-			type: Boolean,
-			defaults: false
-		});
-		this.smacss = this.options.smacss;
+		// this.option('smacss', {
+		// 	desc: 'Use SMACSS',
+		// 	type: Boolean,
+		// 	defaults: false
+		// });
+		// this.smacss = this.options.smacss;
 
-		this.option('pre', {
-			desc: 'Use Preprocessor',
-			type: String,
-			defaults: 'css'
-		});
-		this.pre = this.options.pre;
+		// this.option('pre', {
+		// 	desc: 'Use Preprocessor',
+		// 	type: String,
+		// 	defaults: 'css'
+		// });
+		// this.pre = this.options.pre;
 	},
 
-	ui: function() {
-		this.log("AppPath: ", this.appPath);
-		this.log("Smacss: ", this.smacss);
-		this.log("Pre: ", this.pre);
+	// ui: function() {
+	// 	var prompts = [{
+	// 		type: "list",
+	// 		name: "preprocessor",
+	// 		message: "Do you want scaffolding to include CSS preprocessor ? (Default: CSS)",
+	// 		choices: [
+	// 			"LESS - Configures LESS.",
+	// 			"SASS - Configures SASS.",
+	// 			"Stylus - Configures Stylus.",
+	// 			"Skip this question. Keep the default."
+	// 		],
+	// 		filter: function(val) {
+	// 			var val = val.toLowerCase();
+	// 			if (val.indexOf("less") > -1) {
+	// 				return 'less';
+	// 			} else if (val.indexOf("sass") > -1) {
+	// 				return 'sass';
+	// 			} else if (val.indexOf("stylus") > -1) {
+	// 				return 'stylus';
+	// 			} else {
+	// 				return false;
+	// 			}
+	// 		}
+	// 	}];
 
-		var prompts = [{
-			type: "list",
-			name: "preprocessor",
-			message: "Do you want scaffolding to include CSS preprocessor ? (Default: CSS)",
-			choices: [
-				"LESS - Configures LESS.",
-				"SASS - Configures SASS.",
-				"Stylus - Configures Stylus.",
-				"Skip this question. Keep the default."
-			],
-			filter: function(val) {
-				var val = val.toLowerCase();
-				if (val.indexOf("less") > -1) {
-					return 'less';
-				} else if (val.indexOf("sass") > -1) {
-					return 'sass';
-				} else if (val.indexOf("stylus") > -1) {
-					return 'stylus';
-				} else {
-					return false;
-				}
-			}
-		}];
-
-		this.prompt(prompts, function(answers) {
-			this.log(answers);
-		}.bind(this));
-	},
+	// 	this.prompt(prompts, function(answers) {
+	// 		this.log(answers);
+	// 	}.bind(this));
+	// },
 
 	app: function() {
 		this.fs.copyTpl(
@@ -87,11 +83,23 @@ module.exports = generators.Base.extend({
 		);
 
 		this.fs.copyTpl(
-			this.templatePath('_index.html'),
-			this.destinationPath(this.appPath + '/src/index.html'), {
-				projectName: this.appPath
-			}
+			this.templatePath('_travis.yml'),
+			this.destinationPath(this.appPath + '/.travis.yml')
 		);
+
+		this.fs.copyTpl(
+			this.templatePath('_server.js'),
+			this.destinationPath(this.appPath + '/server.js')
+		);
+
+		// this.fs.copyTpl(
+		// 	this.templatePath('_Gruntfile.js'),
+		// 	this.destinationPath(this.appPath + '/Gruntfile.js')
+		// );
+
+		this.directory('/config', this.appPath + '/config');
+		this.directory('/src', this.appPath + '/src');
+		this.directory('/tests', this.appPath + '/tests');
 	},
 
 	// writing: function() {
