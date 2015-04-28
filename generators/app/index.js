@@ -80,7 +80,7 @@ module.exports = generators.Base.extend({
 		this._copyTemplates('src/stylesheets/less/theme/_imports.less', '/src/stylesheets/less/theme/_imports.less');
 
 		// this._copyTemplates('src/assets/fonts/segoeui.ttf', '/src/assets/fonts/segoeui.ttf');
-		// this._copyTemplates('src/assets/images/dev_profile/.jpeg', '/src/assets/images/dev_profile/.jpeg');
+		this._copyTemplates('src/assets/images/dev_profile.jpeg', '/src/assets/images/dev_profile.jpeg');
 
 		// this.fs.copyTpl(
 		// 	this.templatePath('_Gruntfile.js'),
