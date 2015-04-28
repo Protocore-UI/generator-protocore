@@ -30,7 +30,7 @@ module.exports = generators.Base.extend({
 			projectName: this.appPath
 		});
 		this._copyTemplates('_editorconfig', '/.editorconfig');
-		this._copyTemplates('_bowerrc.js', '/.bowerrc.js');
+		this._copyTemplates('_bowerrc', '/.bowerrc');
 		this._copyTemplates('_package.json', '/package.json', {
 			projectName: this.appPath
 		});
@@ -62,6 +62,25 @@ module.exports = generators.Base.extend({
 		this._copyTemplates('src/_main.js', '/src/main.js');
 		this._copyTemplates('src/systems/utilities/_hb-template-mapper.js', '/src/systems/utilities/hb-template-mapper.js');
 
+		this._copyTemplates('src/stylesheets/less/_consolidate.less', '/src/stylesheets/less/_consolidate.less');
+		this._copyTemplates('src/stylesheets/less/base/_base.less', '/src/stylesheets/less/base/_base.less');
+		this._copyTemplates('src/stylesheets/less/base/_imports.less', '/src/stylesheets/less/base/_imports.less');
+		this._copyTemplates('src/stylesheets/less/base/_normalize.less', '/src/stylesheets/less/base/_normalize.less');
+		this._copyTemplates('src/stylesheets/less/common/_fonts.less', '/src/stylesheets/less/common/_fonts.less');
+		this._copyTemplates('src/stylesheets/less/common/_imports.less', '/src/stylesheets/less/common/_imports.less');
+		this._copyTemplates('src/stylesheets/less/common/_readymade.less', '/src/stylesheets/less/common/_readymade.less');
+		this._copyTemplates('src/stylesheets/less/common/_variables.less', '/src/stylesheets/less/common/_variables.less');
+		this._copyTemplates('src/stylesheets/less/layout/_layout.less', '/src/stylesheets/less/layout/_layout.less');
+		this._copyTemplates('src/stylesheets/less/layout/_imports.less', '/src/stylesheets/less/layout/_imports.less');
+		this._copyTemplates('src/stylesheets/less/modules/_imports.less', '/src/stylesheets/less/modules/_imports.less');
+		this._copyTemplates('src/stylesheets/less/modules/_modules.less', '/src/stylesheets/less/modules/_modules.less');
+		this._copyTemplates('src/stylesheets/less/state/_state.less', '/src/stylesheets/less/state/_state.less');
+		this._copyTemplates('src/stylesheets/less/state/_imports.less', '/src/stylesheets/less/state/_imports.less');
+		this._copyTemplates('src/stylesheets/less/theme/_theme.less', '/src/stylesheets/less/theme/_theme.less');
+		this._copyTemplates('src/stylesheets/less/theme/_imports.less', '/src/stylesheets/less/theme/_imports.less');
+
+		// this._copyTemplates('src/assets/fonts/segoeui.ttf', '/src/assets/fonts/segoeui.ttf');
+		// this._copyTemplates('src/assets/images/dev_profile/.jpeg', '/src/assets/images/dev_profile/.jpeg');
 
 		// this.fs.copyTpl(
 		// 	this.templatePath('_Gruntfile.js'),
