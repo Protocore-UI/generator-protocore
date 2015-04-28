@@ -16,104 +16,57 @@ module.exports = generators.Base.extend({
 			optional: true
 		});
 		this.appPath = this.options.appPath;
-
-		// this.option('smacss', {
-		// 	desc: 'Use SMACSS',
-		// 	type: Boolean,
-		// 	defaults: false
-		// });
-		// this.smacss = this.options.smacss;
-
-		// this.option('pre', {
-		// 	desc: 'Use Preprocessor',
-		// 	type: String,
-		// 	defaults: 'css'
-		// });
-		// this.pre = this.options.pre;
 	},
 
-	// ui: function() {
-	// 	var prompts = [{
-	// 		type: "list",
-	// 		name: "preprocessor",
-	// 		message: "Do you want scaffolding to include CSS preprocessor ? (Default: CSS)",
-	// 		choices: [
-	// 			"LESS - Configures LESS.",
-	// 			"SASS - Configures SASS.",
-	// 			"Stylus - Configures Stylus.",
-	// 			"Skip this question. Keep the default."
-	// 		],
-	// 		filter: function(val) {
-	// 			var val = val.toLowerCase();
-	// 			if (val.indexOf("less") > -1) {
-	// 				return 'less';
-	// 			} else if (val.indexOf("sass") > -1) {
-	// 				return 'sass';
-	// 			} else if (val.indexOf("stylus") > -1) {
-	// 				return 'stylus';
-	// 			} else {
-	// 				return false;
-	// 			}
-	// 		}
-	// 	}];
-
-	// 	this.prompt(prompts, function(answers) {
-	// 		this.log(answers);
-	// 	}.bind(this));
-	// },
+	_copyTemplates: function(tPath, dPath, valSetter) {
+		this.fs.copyTpl(
+			this.templatePath(tPath),
+			this.destinationPath(this.appPath + dPath), (valSetter) ? valSetter : {}
+		);
+	},
 
 	app: function() {
-		this.fs.copyTpl(
-			this.templatePath('_readme.md'),
-			this.destinationPath(this.appPath + '/README.md'), {
-				projectName: this.appPath
-			}
-		);
+		this._copyTemplates('_readme.md', '/README.md', {
+			projectName: this.appPath
+		});
+		this._copyTemplates('_editorconfig', '/.editorconfig');
+		this._copyTemplates('_bowerrc.js', '/.bowerrc.js');
+		this._copyTemplates('_package.json', '/package.json', {
+			projectName: this.appPath
+		});
+		this._copyTemplates('_travis.yml', '/.travis.yml');
+		this._copyTemplates('_server.js', '/server.js');
 
-		this.fs.copyTpl(
-			this.templatePath('_editorconfig'),
-			this.destinationPath(this.appPath + '/.editorconfig')
-		);
+		this._copyTemplates('config/lints/_csslintrc', '/config/lints/.csslintrc');
+		this._copyTemplates('config/lints/_htmlhint-n-rc', '/config/lints/.htmlhint-n-rc');
+		this._copyTemplates('config/lints/_htmlhint-t-rc', '/config/lints/.htmlhint-t-rc');
+		this._copyTemplates('config/lints/_jscsrc', '/config/lints/.jscsrc');
+		this._copyTemplates('config/lints/_jshintrc', '/config/lints/.jshintrc');
+		this._copyTemplates('config/lints/_jshintrc', '/config/lints/.jshintrc');
+		this._copyTemplates('config/_banner.json', '/config/banner.json', {
+			projectName: this.appPath,
+			projectVersion: "0.0.0"
+		});
+		this._copyTemplates('config/_servefiles.json', '/config/servefiles.json');
+		this._copyTemplates('config/_server.env.js', '/config/server.env.js');		
+		this._copyTemplates('config/build/_copy-build.js', '/config/build/copy-build.js');
+		this._copyTemplates('config/build/_optimize-build.js', '/config/build/optimize-build.js');
 
-		this.fs.copyTpl(
-			this.templatePath('_package.json'),
-			this.destinationPath(this.appPath + '/package.json'), {
-				projectName: this.appPath
-			}
-		);
+		this._copyTemplates('src/apps/router/_routes.js', '/src/apps/router/routes.js');
+		this._copyTemplates('src/apps/views/__baseView.js', '/src/apps/views/_baseView.js');
+		this._copyTemplates('src/apps/views/_aboutView.js', '/src/apps/views/aboutView.js');
+		this._copyTemplates('src/apps/views/_homeView.js', '/src/apps/views/homeView.js');
+		this._copyTemplates('src/templates/_homeTpl.html', '/src/templates/homeTpl.html');
+		this._copyTemplates('src/templates/_aboutTpl.html', '/src/templates/aboutTpl.html');
+		this._copyTemplates('src/_index.html', '/src/index.html');
+		this._copyTemplates('src/_main.js', '/src/main.js');
+		this._copyTemplates('src/systems/utilities/_hb-template-mapper.js', '/src/systems/utilities/hb-template-mapper.js');
 
-		this.fs.copyTpl(
-			this.templatePath('_travis.yml'),
-			this.destinationPath(this.appPath + '/.travis.yml')
-		);
-
-		this.fs.copyTpl(
-			this.templatePath('_server.js'),
-			this.destinationPath(this.appPath + '/server.js')
-		);
 
 		// this.fs.copyTpl(
 		// 	this.templatePath('_Gruntfile.js'),
 		// 	this.destinationPath(this.appPath + '/Gruntfile.js')
 		// );
 
-		this.directory('/config', this.appPath + '/config');
-		this.directory('/src', this.appPath + '/src');
-		this.directory('/tests', this.appPath + '/tests');
-	},
-
-	// writing: function() {
-	// 	this.fs.copyTpl(
-	// 		this.templatePath('index.html'),
-	// 		this.destinationPath('src/index.html'), {
-	// 			title: 'Templating with Yeoman'
-	// 		}
-	// 	);
-	// },
-
-	// install: function() {
-	// 	this.on('end', function() {
-	// 		this.log("Installation completed!");
-	// 	});
-	// }
+	}
 });
