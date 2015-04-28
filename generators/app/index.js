@@ -91,6 +91,15 @@ module.exports = generators.Base.extend({
 		// this._copyTemplates('src/assets/fonts/segoeui.ttf', '/src/assets/fonts/segoeui.ttf');
 		this._copyTemplates('src/assets/images/dev_profile.jpeg', '/src/assets/images/dev_profile.jpeg');
 
+		this._copyTemplates('tests/apps/views/__baseView.js', '/tests/apps/views/_baseView.js');
+		this._copyTemplates('tests/libs/qunit/plugins/_qunit.modules.js', '/tests/libs/qunit/plugins/qunit.modules.js');
+		this._copyTemplates('tests/_index.html', '/tests/index.html', {
+			projectName: this.appPath,
+			projectVersion: "0.0.0"
+		});
+		this._copyTemplates('tests/_main.js', '/tests/main.js');
+		this._copyTemplates('tests/_testSuite.js', '/tests/testSuite.js');
+
 		// this.fs.copyTpl(
 		// 	this.templatePath('_Gruntfile.js'),
 		// 	this.destinationPath(this.appPath + '/Gruntfile.js')
