@@ -1,4 +1,4 @@
-# generator-protocore [![GitHub version](http://img.shields.io/badge/version-0.0.0-brightgreen.svg)](https://github.com/hegdeashwin/generator-protocore/releases)
+# generator-protocore [![GitHub version](http://img.shields.io/badge/version-0.0.1-brightgreen.svg)](https://github.com/hegdeashwin/generator-protocore/releases)
 
 A Yeoman generator for [Protocore](https://github.com/hegdeashwin/Protocore). The tool will help to generate walking application skeleton for a typical unstructured JavaScript/jQuery web apps.
 

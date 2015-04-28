@@ -48,7 +48,7 @@ module.exports = generators.Base.extend({
 			projectVersion: "0.0.0"
 		});
 		this._copyTemplates('config/_servefiles.json', '/config/servefiles.json');
-		this._copyTemplates('config/_server.env.js', '/config/server.env.js');		
+		this._copyTemplates('config/_server.env.js', '/config/server.env.js');
 		this._copyTemplates('config/build/_copy-build.js', '/config/build/copy-build.js');
 		this._copyTemplates('config/build/_optimize-build.js', '/config/build/optimize-build.js');
 
@@ -56,9 +56,18 @@ module.exports = generators.Base.extend({
 		this._copyTemplates('src/apps/views/__baseView.js', '/src/apps/views/_baseView.js');
 		this._copyTemplates('src/apps/views/_aboutView.js', '/src/apps/views/aboutView.js');
 		this._copyTemplates('src/apps/views/_homeView.js', '/src/apps/views/homeView.js');
-		this._copyTemplates('src/templates/_homeTpl.html', '/src/templates/homeTpl.html');
-		this._copyTemplates('src/templates/_aboutTpl.html', '/src/templates/aboutTpl.html');
-		this._copyTemplates('src/_index.html', '/src/index.html');
+		this._copyTemplates('src/templates/_homeTpl.html', '/src/templates/homeTpl.html', {
+			projectName: this.appPath,
+			projectVersion: "0.0.0"
+		});
+		this._copyTemplates('src/templates/_aboutTpl.html', '/src/templates/aboutTpl.html', {
+			projectName: this.appPath,
+			projectVersion: "0.0.0"
+		});
+		this._copyTemplates('src/_index.html', '/src/index.html', {
+			projectName: this.appPath,
+			projectVersion: "0.0.0"
+		});
 		this._copyTemplates('src/_main.js', '/src/main.js');
 		this._copyTemplates('src/systems/utilities/_hb-template-mapper.js', '/src/systems/utilities/hb-template-mapper.js');
 
@@ -82,10 +91,34 @@ module.exports = generators.Base.extend({
 		// this._copyTemplates('src/assets/fonts/segoeui.ttf', '/src/assets/fonts/segoeui.ttf');
 		this._copyTemplates('src/assets/images/dev_profile.jpeg', '/src/assets/images/dev_profile.jpeg');
 
-		// this.fs.copyTpl(
-		// 	this.templatePath('_Gruntfile.js'),
-		// 	this.destinationPath(this.appPath + '/Gruntfile.js')
-		// );
+		this._copyTemplates('tests/apps/views/__baseView.js', '/tests/apps/views/_baseView.js');
+		this._copyTemplates('tests/libs/qunit/plugins/_qunit.modules.js', '/tests/libs/qunit/plugins/qunit.modules.js');
+		this._copyTemplates('tests/_index.html', '/tests/index.html', {
+			projectName: this.appPath,
+			projectVersion: "0.0.0"
+		});
+		this._copyTemplates('tests/_main.js', '/tests/main.js');
+		this._copyTemplates('tests/_testSuite.js', '/tests/testSuite.js');
 
+		this._copyTemplates('_Gruntfile.js', '/Gruntfile.js', {
+			pkgAppName: "<%= pkg.application.name %>",
+			pkgAppVersion: "<%= pkg.application.version %>",
+			buildTags: "<%= buildTags %>",
+			cfUsebanner: "<%= configuredFiles.usebanner %>",
+			cfJshintIgnore: "<%= configuredFiles.jshint.ignore %>",
+			cfJshintFiles: "<%= configuredFiles.jshint.files %>",
+			cfJscsFiles: "<%= configuredFiles.jscs.files %>",
+			cfJsonlint: "<%= configuredFiles.jsonlint %>",
+			cfCsslintIgnore: "<%= configuredFiles.csslint.ignore %>",
+			cfCsslintFiles: "<%= configuredFiles.csslint.files %>",
+			cfHtmlhintRoot_HTML_FilesIgnore: "<%= configuredFiles.htmlhint.Root_HTML_Files.ignore %>",
+			cfHtmlhintRoot_HTML_FilesFiles: "<%= configuredFiles.htmlhint.Root_HTML_Files.files %>",
+			cfHtmlhintTemplatesIgnore: "<%= configuredFiles.htmlhint.Templates.ignore %>",
+			cfHtmlhintTemplatesFiles: "<%= configuredFiles.htmlhint.Templates.files %>",
+			cfLessReadyMadeFiles: "<%= configuredFiles.less.readyMade.files %>",
+			cfLessCustomMadeFiles: "<%= configuredFiles.less.customMade.files %>",
+			cfWatchLessFiles: "<%= configuredFiles.watch.less.files %>",
+			cfHtmlminFiles: "<%= configuredFiles.htmlmin.files %>"
+		});
 	}
 });
