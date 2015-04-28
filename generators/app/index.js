@@ -100,10 +100,25 @@ module.exports = generators.Base.extend({
 		this._copyTemplates('tests/_main.js', '/tests/main.js');
 		this._copyTemplates('tests/_testSuite.js', '/tests/testSuite.js');
 
-		// this.fs.copyTpl(
-		// 	this.templatePath('_Gruntfile.js'),
-		// 	this.destinationPath(this.appPath + '/Gruntfile.js')
-		// );
-
+		this._copyTemplates('_Gruntfile.js', '/Gruntfile.js', {
+			pkgAppName: "<%= pkg.application.name %>",
+			pkgAppVersion: "<%= pkg.application.version %>",
+			buildTags: "<%= buildTags %>",
+			cfUsebanner: "<%= configuredFiles.usebanner %>",
+			cfJshintIgnore: "<%= configuredFiles.jshint.ignore %>",
+			cfJshintFiles: "<%= configuredFiles.jshint.files %>",
+			cfJscsFiles: "<%= configuredFiles.jscs.files %>",
+			cfJsonlint: "<%= configuredFiles.jsonlint %>",
+			cfCsslintIgnore: "<%= configuredFiles.csslint.ignore %>",
+			cfCsslintFiles: "<%= configuredFiles.csslint.files %>",
+			cfHtmlhintRoot_HTML_FilesIgnore: "<%= configuredFiles.htmlhint.Root_HTML_Files.ignore %>",
+			cfHtmlhintRoot_HTML_FilesFiles: "<%= configuredFiles.htmlhint.Root_HTML_Files.files %>",
+			cfHtmlhintTemplatesIgnore: "<%= configuredFiles.htmlhint.Templates.ignore %>",
+			cfHtmlhintTemplatesFiles: "<%= configuredFiles.htmlhint.Templates.files %>",
+			cfLessReadyMadeFiles: "<%= configuredFiles.less.readyMade.files %>",
+			cfLessCustomMadeFiles: "<%= configuredFiles.less.customMade.files %>",
+			cfWatchLessFiles: "<%= configuredFiles.watch.less.files %>",
+			cfHtmlminFiles: "<%= configuredFiles.htmlmin.files %>"
+		});
 	}
 });

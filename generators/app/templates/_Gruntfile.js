@@ -11,7 +11,7 @@ module.exports = function(grunt) {
      */
     grunt.initConfig({
         pkg: grunt.file.readJSON('config/banner.json'),
-        buildTags: "/* Project Name : <%= pkg.application.name %> Release version : <%= pkg.application.version %> */",
+        buildTags: "/* Project Name : <%= pkgAppName %> Release version : <%= pkgAppVersion %> */",
 
         configuredFiles: grunt.file.readJSON('config/servefiles.json'),
         
@@ -37,51 +37,51 @@ module.exports = function(grunt) {
                     linebreak: true
                 },
                 files: {
-                    src: '<%= configuredFiles.usebanner %>'
+                    src: '<%= cfUsebanner %>'
                 }
             }
         },
         jshint: {
             options: {
                 jshintrc: 'config/lints/.jshintrc',
-                ignores: '<%= configuredFiles.jshint.ignore %>'
+                ignores: '<%= cfJshintIgnore %>'
             },
-            all: '<%= configuredFiles.jshint.files %>'
+            all: '<%= cfJshintFiles %>'
         },
         jscs: {
             options: {
                 config: 'config/lints/.jscsrc'
             },
-            src: '<%= configuredFiles.jscs.files %>',
+            src: '<%= cfJscsFiles %>',
         },
         jsonlint: {
             files: {
-                src: '<%= configuredFiles.jsonlint %>'
+                src: '<%= cfJsonlint %>'
             }
         },
         csslint: {
             strict: {
                 options: {
                     csslintrc: 'config/lints/.csslintrc',
-                    ignores: '<%= configuredFiles.csslint.ignore %>'
+                    ignores: '<%= cfCsslintIgnore %>'
                 },
-                src: '<%= configuredFiles.csslint.files %>'
+                src: '<%= cfCsslintFiles %>'
             }
         },
         htmlhint: {
             Root_HTML_Files: {
                 options: {
                     htmlhintrc: 'config/lints/.htmlhint-n-rc',
-                    ignores: '<%= configuredFiles.htmlhint.Root_HTML_Files.ignore %>'
+                    ignores: '<%= cfHtmlhintRoot_HTML_FilesIgnore %>'
                 },
-                src: '<%= configuredFiles.htmlhint.Root_HTML_Files.files %>'
+                src: '<%= cfHtmlhintRoot_HTML_FilesFiles %>'
             },
             Templates: {
                 options: {
                     htmlhintrc: 'config/lints/.htmlhint-t-rc',
-                    ignores: '<%= configuredFiles.htmlhint.Templates.ignore %>'
+                    ignores: '<%= cfHtmlhintTemplatesIgnore %>'
                 },
-                src: '<%= configuredFiles.htmlhint.Templates.files %>'
+                src: '<%= cfHtmlhintTemplatesFiles %>'
 
             }
         },
@@ -90,19 +90,19 @@ module.exports = function(grunt) {
                 options: {
                     compress: true
                 },
-                files: '<%= configuredFiles.less.readyMade.files %>'
+                files: '<%= cfLessReadyMadeFiles %>'
             },
             customMade: {
                 options: {
                     compress: false
                 },
-                files: '<%= configuredFiles.less.customMade.files %>'
+                files: '<%= cfLessCustomMadeFiles %>'
             },
             prod: {
                 options: {
                     compress: true
                 },
-                files: '<%= configuredFiles.less.customMade.files %>'
+                files: '<%= cfLessCustomMadeFiles %>'
             }
         },
         watch: {
@@ -110,7 +110,7 @@ module.exports = function(grunt) {
                 options: {
                     spawn: false
                 },
-                files: '<%= configuredFiles.watch.less.files %>',
+                files: '<%= cfWatchLessFiles %>',
                 tasks: ['less:customMade']
             }
         },
@@ -152,7 +152,7 @@ module.exports = function(grunt) {
                     removeComments: true,
                     collapseWhitespace: true
                 },
-                files: '<%= configuredFiles.htmlmin.files %>'
+                files: '<%= cfHtmlminFiles %>'
             }
         }
     });
