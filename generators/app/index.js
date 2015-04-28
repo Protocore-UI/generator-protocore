@@ -30,7 +30,7 @@ module.exports = generators.Base.extend({
 			projectName: this.appPath
 		});
 		this._copyTemplates('_editorconfig', '/.editorconfig');
-		this._copyTemplates('_bowerrc.js', '/.bowerrc.js');
+		this._copyTemplates('_bowerrc', '/.bowerrc');
 		this._copyTemplates('_package.json', '/package.json', {
 			projectName: this.appPath
 		});
