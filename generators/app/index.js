@@ -48,7 +48,7 @@ module.exports = generators.Base.extend({
 			projectVersion: "0.0.0"
 		});
 		this._copyTemplates('config/_servefiles.json', '/config/servefiles.json');
-		this._copyTemplates('config/_server.env.js', '/config/server.env.js');		
+		this._copyTemplates('config/_server.env.js', '/config/server.env.js');
 		this._copyTemplates('config/build/_copy-build.js', '/config/build/copy-build.js');
 		this._copyTemplates('config/build/_optimize-build.js', '/config/build/optimize-build.js');
 
@@ -56,9 +56,18 @@ module.exports = generators.Base.extend({
 		this._copyTemplates('src/apps/views/__baseView.js', '/src/apps/views/_baseView.js');
 		this._copyTemplates('src/apps/views/_aboutView.js', '/src/apps/views/aboutView.js');
 		this._copyTemplates('src/apps/views/_homeView.js', '/src/apps/views/homeView.js');
-		this._copyTemplates('src/templates/_homeTpl.html', '/src/templates/homeTpl.html');
-		this._copyTemplates('src/templates/_aboutTpl.html', '/src/templates/aboutTpl.html');
-		this._copyTemplates('src/_index.html', '/src/index.html');
+		this._copyTemplates('src/templates/_homeTpl.html', '/src/templates/homeTpl.html', {
+			projectName: this.appPath,
+			projectVersion: "0.0.0"
+		});
+		this._copyTemplates('src/templates/_aboutTpl.html', '/src/templates/aboutTpl.html', {
+			projectName: this.appPath,
+			projectVersion: "0.0.0"
+		});
+		this._copyTemplates('src/_index.html', '/src/index.html', {
+			projectName: this.appPath,
+			projectVersion: "0.0.0"
+		});
 		this._copyTemplates('src/_main.js', '/src/main.js');
 		this._copyTemplates('src/systems/utilities/_hb-template-mapper.js', '/src/systems/utilities/hb-template-mapper.js');
 
