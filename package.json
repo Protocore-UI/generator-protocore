@@ -1,6 +1,6 @@
 {
   "name": "generator-protocore",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Yeoman generator for Protocore. The tool will help to generate walking application skeleton for a typical unstructured JavaScript/jQuery web apps.",
   "keywords": [
     "yeoman-generator"
@@ -9,7 +9,9 @@
     "chalk": "^1.0.0",
     "yeoman-generator": "^0.19.2"
   },
-  "files": [],
+  "files": [
+    "generators"
+  ],
   "homepage": "https://github.com/hegdeashwin/generator-protocore",
   "repository": {
     "type": "git",
