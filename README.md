@@ -1,4 +1,4 @@
-# generator-protocore [![GitHub version](http://img.shields.io/badge/version-0.0.1-brightgreen.svg)](https://github.com/hegdeashwin/generator-protocore/releases)
+# generator-protocore [![GitHub version](http://img.shields.io/badge/version-0.0.2-brightgreen.svg)](https://github.com/hegdeashwin/generator-protocore/releases)
 
 A Yeoman generator for [Protocore](https://github.com/hegdeashwin/Protocore). The tool will help to generate walking application skeleton for a typical unstructured JavaScript/jQuery web apps.
 
@@ -8,6 +8,16 @@ Assuming that Node.js is already installed & running,
 
 ```sh
 $ npm install -g yo generator-protocore
+```
+
+Make a new directory and `cd` into it:
+```
+mkdir new-project && cd $_
+```
+
+Run `yo protocore`, optionally passing an app name:
+```
+yo protocore [app-name]
 ```
 
 ## Author & Contributors
