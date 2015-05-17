@@ -1,5 +1,7 @@
 # generator-protocore [![GitHub version](http://img.shields.io/badge/version-0.0.2-brightgreen.svg)](https://github.com/hegdeashwin/generator-protocore/releases)
 
+[![Dependency Status](https://gemnasium.com/hegdeashwin/generator-protocore.svg)](https://gemnasium.com/hegdeashwin/generator-protocore)
+
 A Yeoman generator for [Protocore](https://github.com/hegdeashwin/Protocore). The tool will help to generate walking application skeleton for a typical unstructured JavaScript/jQuery web apps.
 
 ## Installation
